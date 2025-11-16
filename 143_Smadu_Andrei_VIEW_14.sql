@@ -21,6 +21,7 @@ WHERE "cod" IN (
     FROM PROMOTIE);
     
 --operatie nepermisa
-INSERT INTO Date_Produs("cod", "nume", "procent reducere", "nr. aprovizionari") VALUES  ('A4C4', 'Lopata', 10, 2);
+INSERT INTO DATE_PRODUS("cod", "nume", "procent reducere", "nr. aprovizionari") VALUES  ('A4C4', 'Lopata', 10, 2);
+
 
 
