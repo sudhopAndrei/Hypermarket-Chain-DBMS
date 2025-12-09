@@ -78,8 +78,8 @@ CREATE TABLE ACHIZITIE (
     cod_tranzactie NUMBER,
     id_client NUMBER,
     CNP_angajat NUMBER(13,0),
-    metoda_plata VARCHAR2(30),
-    status VARCHAR2(30),
+    metoda_plata VARCHAR2(30) CHECK (metoda_plata IN ('Card','Numerar','PayPal')),
+    status VARCHAR2(30) CHECK (status IN ('In procesare', 'Finalizat')),
     PRIMARY KEY (cod_tranzactie),
     FOREIGN KEY (id_client) 
         REFERENCES CLIENT(id_client) ON DELETE SET NULL,
