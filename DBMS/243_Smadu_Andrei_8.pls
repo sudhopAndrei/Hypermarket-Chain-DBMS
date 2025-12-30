@@ -34,8 +34,7 @@ BEGIN
     
 EXCEPTION
     WHEN NO_DATA_FOUND THEN
-        DBMS_OUTPUT.PUT_LINE('Nu exista angajati care indeplindesc conditiile');
-        RETURN NULL;
+        RAISE_APPLICATION_ERROR(-20000, 'Nu exista angajati care indeplindesc conditiile');
     WHEN TOO_MANY_ROWS THEN
         RAISE_APPLICATION_ERROR(-20001, 'Mai multi angajati care respecta cerintele cu acelasi salariu maxim');
     WHEN OTHERS THEN
@@ -46,6 +45,5 @@ END angajat_salariu_max;
 
 BEGIN
     DBMS_OUTPUT.PUT_LINE(angajat_salariu_max(5000)); 
-    DBMS_OUTPUT.PUT_LINE(angajat_salariu_max(7000));
 END;
 /
