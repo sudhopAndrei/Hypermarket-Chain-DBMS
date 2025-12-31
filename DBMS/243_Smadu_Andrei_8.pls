@@ -45,6 +45,10 @@ END angajat_salariu_max;
 
 BEGIN
     DBMS_OUTPUT.PUT_LINE(angajat_salariu_max(5000));
+END;
+/
+
+BEGIN
     DBMS_OUTPUT.PUT_LINE(angajat_salariu_max(7000));
 END;
 /
