@@ -1,4 +1,4 @@
---8.) Sa se afiseze numele celui mai bine platit angajat cu salariul mai mare decat o suma data
+--8.) Sa se afiseze numele celui mai bine platit angajat cu salariul mai mare sau egal decat o suma data,
 -- care a procesat cel putin o comanda in valoare de minim 500 de lei
 
 SET SERVEROUTPUT ON;
@@ -11,7 +11,7 @@ CREATE OR REPLACE FUNCTION angajat_salariu_max(p_suma ANGAJAT.salariu%TYPE)
 BEGIN
     SELECT A.nume_complet INTO v_nume_angajat
     FROM ANGAJAT A
-    WHERE A.salariu > p_suma
+    WHERE A.salariu >= p_suma
     AND EXISTS (SELECT *
                 FROM ACHIZITIE AC
                 JOIN ACHIZITIE_PRODUS AP ON AP.cod_tranzactie = AC.cod_tranzactie
