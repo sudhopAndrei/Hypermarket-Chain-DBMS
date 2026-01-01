@@ -3,5 +3,5 @@
 *.sql text
 
 *.pls linguist-detectable=true
-*.pls linguist-language=PLpgSQL
+*.pls linguist-language=plsql
 *.pls text
