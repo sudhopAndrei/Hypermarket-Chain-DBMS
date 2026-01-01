@@ -94,3 +94,5 @@ CREATE TABLE ACHIZITIE_PRODUS (
     pret NUMBER(6,2),
     PRIMARY KEY (cod_produs, cod_tranzactie)
 );
+
+COMMIT;
