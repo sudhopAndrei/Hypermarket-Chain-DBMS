@@ -210,3 +210,5 @@ INSERT ALL
     INTO ACHIZITIE_PRODUS (cod_produs, cod_tranzactie, cantitate, pret) VALUES (29, 1024, 1, 89.99)
     INTO ACHIZITIE_PRODUS (cod_produs, cod_tranzactie, cantitate, pret) VALUES (17, 1025, 2, 160)
 SELECT * FROM dual;
+
+COMMIT;
