@@ -1,6 +1,6 @@
 --10.) Sa se permita doar utilizatorului ADMIN_MAGAZIN sa adauge,
 -- sa modifice doar campul cantitate ,dar nu sa stearga aprovizionarile in intervalul orar 22:00 - 08:00.
--- Utilizator MANAGER_LOGISTICA nu are restrictii        
+-- Utilizatorul MANAGER_LOGISTICA nu are restrictii        
     
 CREATE OR REPLACE TRIGGER actiuni_aprovizionare
 BEFORE INSERT OR UPDATE OR DELETE ON APROVIZIONARE
@@ -13,15 +13,15 @@ BEGIN
         ELSE
             IF UPDATING THEN
                 IF UPDATING('id_magazin') OR UPDATING('EUID') OR UPDATING('cod_produs') OR UPDATING('data_aprovizionare') THEN
-                    RAISE_APPLICATION_ERROR(-20002, 'Nu se poate modifica acest atribut');
+                    RAISE_APPLICATION_ERROR(-20001, 'Nu se poate modifica acest atribut');
                 END IF;
             END IF;
             
             IF DELETING THEN
-                RAISE_APPLICATION_ERROR(-20003, 'Nu aveti acces la stergere');
+                RAISE_APPLICATION_ERROR(-20002, 'Nu aveti acces la stergere');
             END IF;
         END IF;
     ELSE
-        RAISE_APPLICATION_ERROR(-20001, 'Nu aveti acces la comenzile de administrator');
+        RAISE_APPLICATION_ERROR(-20003, 'Nu aveti acces la comenzile de administrator');
     END IF;
 END;   
