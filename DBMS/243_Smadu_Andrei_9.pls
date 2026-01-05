@@ -50,7 +50,7 @@ END;
 /
 
 BEGIN
-    statistica_client(13, 10);
+    statistica_client(17, 10);
 END;
 /
 
@@ -60,6 +60,6 @@ END;
 /
 
 BEGIN
-    statistica_client(13, 150);
+    statistica_client(17, 150);
 END;
 /
