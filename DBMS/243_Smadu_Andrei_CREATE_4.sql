@@ -27,7 +27,7 @@ CREATE TABLE FURNIZOR (
 
 CREATE TABLE PROMOTIE (
     cod_promotie NUMBER,
-    procent_reducere NUMBER(3,0),
+    procent_reducere NUMBER(3,0) CHECK (procent_reducere BETWEEN 1 AND 100),
     data_inceput DATE,
     data_sfarsit DATE,
     PRIMARY KEY (cod_promotie),
@@ -96,4 +96,5 @@ CREATE TABLE ACHIZITIE_PRODUS (
 );
 
 COMMIT;
+
 
