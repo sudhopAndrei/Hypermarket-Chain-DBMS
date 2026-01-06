@@ -37,7 +37,7 @@ BEGIN
     AND PR.procent_reducere >= p_procent_minim;
     
     DBMS_OUTPUT.PUT_LINE('Clientul cu id-ul ' || p_id_client || ' a cheltuit ' || v_suma_totala ||
-        ' pe produse reduse cu peste ' || p_procent_minim);
+        ' pe produse reduse cu peste ' || p_procent_minim || '%');
     
 EXCEPTION
     WHEN NU_EXISTA_CLIENT THEN
