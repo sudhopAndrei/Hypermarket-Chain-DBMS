@@ -1,7 +1,9 @@
 --10.) Sa se permita doar utilizatorului ADMIN_MAGAZIN sa adauge,
 -- sa modifice doar campul cantitate ,dar nu sa stearga aprovizionarile in intervalul orar 22:00 - 08:00.
 -- Utilizatorul MANAGER_LOGISTICA nu are restrictii        
-    
+
+SET SERVEROUTPUT ON;
+
 CREATE OR REPLACE TRIGGER actiuni_aprovizionare
 BEFORE INSERT OR UPDATE OR DELETE ON APROVIZIONARE
 BEGIN
@@ -25,3 +27,13 @@ BEGIN
         RAISE_APPLICATION_ERROR(-20003, 'Nu aveti acces la comenzile de administrator');
     END IF;
 END;   
+/
+
+--Se sterg aprovizionarile pentru magazinul cu id-ul 2
+BEGIN
+    DBMS_OUTPUT.PUT_LINE('User curent: ' || USER);
+    DBMS_OUTPUT.PUT_LINE('Ora curenta: ' || TO_CHAR(SYSDATE, 'HH24:MI'));
+    DELETE FROM APROVIZIONARE WHERE id_magazin = 2;
+    DBMS_OUTPUT.PUT_LINE('Randuri sterse: ' || SQL%ROWCOUNT);
+END;
+/
