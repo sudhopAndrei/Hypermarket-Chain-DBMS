@@ -132,7 +132,7 @@ SELECT * FROM dual;
 --ANGAJAT (20)
 INSERT ALL
     INTO ANGAJAT (CNP_angajat, id_magazin, nume_complet, salariu, data_angajare) VALUES (1890302234567, 5, 'Ionescu Elena', 3800, TO_DATE('10-02-2021', 'DD-MM-YYYY'))
-    INTO ANGAJAT (CNP_angajat, id_magazin, nume_complet, salariu, data_angajare) VALUES (1750215789012, 3, 'Roby Will', 6000, TO_DATE('20-05-2019', 'DD-MM-YYYY'))
+    INTO ANGAJAT (CNP_angajat, id_magazin, nume_complet, salariu, data_angajare) VALUES (1750215789012, 3, 'Roby Will', 6000, TO_DATE('20-05-2025', 'DD-MM-YYYY'))
     INTO ANGAJAT (CNP_angajat, id_magazin, nume_complet, salariu, data_angajare) VALUES (1880723345678, 8, 'Popa Andreea', 3900, TO_DATE('05-07-2021', 'DD-MM-YYYY'))
     INTO ANGAJAT (CNP_angajat, id_magazin, nume_complet, salariu, data_angajare) VALUES (1760812456789, 7, 'Stanescu Cristian', 5800, TO_DATE('12-11-2019', 'DD-MM-YYYY'))
     INTO ANGAJAT (CNP_angajat, id_magazin, nume_complet, salariu, data_angajare) VALUES (1870405567890, 1, 'Mario Klaus', 4200, TO_DATE('30-09-2020', 'DD-MM-YYYY'))
@@ -178,7 +178,7 @@ INSERT ALL
     INTO ACHIZITIE (cod_tranzactie, id_client, CNP_angajat, metoda_plata, status) VALUES (1021, 21, 1841129678901, 'Numerar', 'Finalizata')
     INTO ACHIZITIE (cod_tranzactie, id_client, CNP_angajat, metoda_plata, status) VALUES (1022, 22, 1810915456789, 'Card', 'In procesare')
     INTO ACHIZITIE (cod_tranzactie, id_client, CNP_angajat, metoda_plata, status) VALUES (1023, 23, 1890302234567, 'PayPal', 'Finalizata')
-    INTO ACHIZITIE (cod_tranzactie, id_client, CNP_angajat, metoda_plata, status) VALUES (1024, 24, 1750215789012, 'Card', 'Finalizata')
+    INTO ACHIZITIE (cod_tranzactie, id_client, CNP_angajat, metoda_plata, status) VALUES (1024, 24, 1750215789012, 'Card', 'In procesare')
     INTO ACHIZITIE (cod_tranzactie, id_client, CNP_angajat, metoda_plata, status) VALUES (1025, 25, 1810915456789, 'PayPal', 'In procesare')
 SELECT * FROM dual;
 
