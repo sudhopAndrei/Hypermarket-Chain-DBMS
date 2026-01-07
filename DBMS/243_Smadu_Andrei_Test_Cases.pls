@@ -5,9 +5,6 @@ EXEC ieftinire_produse;
 EXEC lista_produse;
 
 --8
-END angajat_salariu_max;
-/
-
 BEGIN
     DBMS_OUTPUT.PUT_LINE(angajat_salariu_max(5000));
 END;
@@ -18,6 +15,19 @@ BEGIN
 END;
 /
 
+SELECT A.nume_complet, A.salariu
+FROM ANGAJAT A
+WHERE A.salariu >= 5000
+AND EXISTS (
+ SELECT *
+ FROM ACHIZITIE AC
+ JOIN ACHIZITIE_PRODUS AP ON AP.cod_tranzactie = AC.cod_tranzactie
+ WHERE AC.CNP_angajat = A.CNP_angajat
+ GROUP BY AC.cod_tranzactie
+ HAVING SUM(AP.cantitate * AP.pret) >= 500
+)
+ORDER BY A.salariu DESC;
+    
 --9
 BEGIN
     statistica_client(17, 10);
