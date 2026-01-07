@@ -39,51 +39,7 @@ INSERT INTO PRODUS (cod_produs, nume_produs, pret, cod_promotie, data_fabricare,
 INSERT INTO ACHIZITIE_PRODUS (cod_produs, cod_tranzactie, cantitate, pret) VALUES (50, 1001, 2, 5);
 
 --Achizitionare produs scump pentru angajat < 1 an
-DECLARE
-    v_pret PRODUS.pret%TYPE;
-    v_data_angajare ANGAJAT.data_angajare%TYPE;
-    v_status ACHIZITIE.status%TYPE;
-BEGIN
-    SELECT P.pret, AN.data_angajare, AC.status INTO v_pret, v_data_angajare, v_status
-    FROM PRODUS P, ANGAJAT AN, ACHIZITIE AC
-    WHERE P.cod_produs = 3 AND AN.CNP_angajat = 1750215789012 AND AC.cod_tranzactie = 1024;
-    
-    DBMS_OUTPUT.PUT_LINE('Inseram produsul cu pretul de ' || v_pret ||
-    ' in achizitia procesata de un angajat cu vechimea de ' || (TRUNC(MONTHS_BETWEEN(SYSDATE, v_data_angajare) / 12, 1))
-    || ' ani');
-    DBMS_OUTPUT.PUT_LINE('Status initial achizitie 1024: ' || v_status);
-    
-    INSERT INTO ACHIZITIE_PRODUS (cod_produs, cod_tranzactie, cantitate, pret) VALUES (3, 1024, 1, 1799.99);
-    
-    SELECT status INTO v_status
-    FROM ACHIZITIE
-    WHERE cod_tranzactie = 1024;
-    
-    DBMS_OUTPUT.PUT_LINE('Status actual achizitie 1024: ' || v_status);
-END;
-/
+INSERT INTO ACHIZITIE_PRODUS (cod_produs, cod_tranzactie, cantitate, pret) VALUES (3, 1024, 1, 1799.99);
 
 --Achizitionare produs scump pentru angajat > 1 an
-DECLARE
-    v_pret PRODUS.pret%TYPE;
-    v_data_angajare ANGAJAT.data_angajare%TYPE;
-    v_status ACHIZITIE.status%TYPE;
-BEGIN
-    SELECT P.pret, AN.data_angajare, AC.status INTO v_pret, v_data_angajare, v_status
-    FROM PRODUS P, ANGAJAT AN, ACHIZITIE AC
-    WHERE P.cod_produs = 3 AND AN.CNP_angajat = 1850528789012 AND AC.cod_tranzactie = 1010;
-    
-    DBMS_OUTPUT.PUT_LINE('Inseram produsul cu pretul de ' || v_pret ||
-    ' in achizitia procesata de un angajat cu vechimea de ' || (TRUNC(MONTHS_BETWEEN(SYSDATE, v_data_angajare) / 12, 1))
-    || ' ani');
-    DBMS_OUTPUT.PUT_LINE('Status initial achizitie 1010: ' || v_status);
-    
-    INSERT INTO ACHIZITIE_PRODUS (cod_produs, cod_tranzactie, cantitate, pret) VALUES (3, 1010, 1, 1799.99);
-    
-    SELECT status INTO v_status
-    FROM ACHIZITIE
-    WHERE cod_tranzactie = 1010;
-    
-    DBMS_OUTPUT.PUT_LINE('Status actual achizitie 1010: ' || v_status);
-END;
-/
+INSERT INTO ACHIZITIE_PRODUS (cod_produs, cod_tranzactie, cantitate, pret) VALUES (3, 1010, 1, 1799.99);
