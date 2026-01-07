@@ -15,3 +15,12 @@ BEGIN
         RAISE_APPLICATION_ERROR(-20001, 'Nu aveti acces la comenzile asupra bazei de date');
     END IF;
 END;   
+/
+
+--Se sterge tabelul CLIENT
+BEGIN
+    DBMS_OUTPUT.PUT_LINE('User curent: ' || USER);
+    DBMS_OUTPUT.PUT_LINE('Ora curenta: ' || TO_CHAR(SYSDATE, 'HH24:MI'));
+    EXECUTE IMMEDIATE 'DROP TABLE CLIENT CASCADE CONSTRAINTS';
+END;
+/
