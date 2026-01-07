@@ -1,5 +1,7 @@
 --12.) Sa se permita doar user-ului MANAGER_LOGISTICA operatiile LDD doar in intervalul orar 22:00 - 08:00 
 
+SET SERVEROUTPUT ON;
+
 CREATE OR REPLACE TRIGGER permisiuni_LDD
 BEFORE DDL ON DATABASE
 BEGIN
@@ -22,5 +24,6 @@ BEGIN
     DBMS_OUTPUT.PUT_LINE('User curent: ' || USER);
     DBMS_OUTPUT.PUT_LINE('Ora curenta: ' || TO_CHAR(SYSDATE, 'HH24:MI'));
     EXECUTE IMMEDIATE 'DROP TABLE CLIENT CASCADE CONSTRAINTS';
+    DBMS_OUTPUT.PUT_LINE('Tabelul CLIENT a fost sters');
 END;
 /
