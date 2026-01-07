@@ -30,10 +30,14 @@ END;
 /
 
 --Se sterg aprovizionarile pentru magazinul cu id-ul 2
-BEGIN
-    DBMS_OUTPUT.PUT_LINE('User curent: ' || USER);
-    DBMS_OUTPUT.PUT_LINE('Ora curenta: ' || TO_CHAR(SYSDATE, 'HH24:MI'));
-    DELETE FROM APROVIZIONARE WHERE id_magazin = 2;
-    DBMS_OUTPUT.PUT_LINE('Randuri sterse: ' || SQL%ROWCOUNT);
-END;
-/
+DELETE FROM APROVIZIONARE WHERE id_magazin = 2;
+
+--Se modifica o coloana nepermisa
+UPDATE APROVIZIONARE SET cod_produs = 10 WHERE id_magazin = 3;
+
+--Se modifica o coloana permisa
+UPDATE APROVIZIONARE SET cantitate = 10 WHERE cod_produs = 16; 
+
+--Se insereaza o aprovizionare
+INSERT INTO APROVIZIONARE (id_magazin, cod_produs, EUID, cantitate, data_aprovizionare)
+    VALUES (3, 21, 'RO73925', 44, TO_DATE('11-02-2023', 'DD-MM-YYYY'));
