@@ -103,7 +103,6 @@ CREATE OR REPLACE PACKAGE BODY performanta_angajati IS
     
     PROCEDURE majorare_salarii(p_id_magazin MAGAZIN.id_magazin%TYPE, p_prag_vanzari NUMBER) IS
         v_count_magazin NUMBER;
-        v_salariu_nou NUMBER;
         v_modificari NUMBER := 0;
     BEGIN
         SELECT COUNT(*) INTO v_count_magazin
