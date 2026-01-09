@@ -141,3 +141,12 @@ BEGIN
     DBMS_OUTPUT.PUT_LINE('Tabelul CLIENT a fost sters'); 
 END; 
 / 
+
+--13
+INSERT INTO ACHIZITIE_PRODUS (cod_produs, cod_tranzactie, cantitate, pret) VALUES (1, 1003, 50, 2500); 
+    
+SELECT M.id_magazin
+FROM MAGAZIN M
+JOIN ANGAJAT AN ON AN.id_magazin = M.id_magazin
+JOIN ACHIZITIE AC ON AC.CNP_angajat = AN.CNP_angajat
+WHERE AC.cod_tranzactie = 1003;
