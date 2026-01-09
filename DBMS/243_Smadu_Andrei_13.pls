@@ -4,6 +4,8 @@
 -- Inainte de a creste salariul vom afisa o colectie cu angajatii eligibili, iar abia apoi se va
 -- lua decizia de a se modifica sau nu
 
+SET SERVEROUTPUT ON;
+
 CREATE OR REPLACE PACKAGE performanta_angajati IS
     TYPE rec_raport_angajati IS RECORD (
         CNP_angajat ANGAJAT.CNP_angajat%TYPE,
@@ -40,9 +42,9 @@ CREATE OR REPLACE PACKAGE BODY performanta_angajati IS
     
     FUNCTION calcul_salariu_nou(p_salariu ANGAJAT.salariu%TYPE, p_vanzari_angajat NUMBER) RETURN NUMBER IS
     BEGIN
-        IF p_vanzari_angajat > (p_salariu * 5) THEN
+        IF p_vanzari_angajat >= (p_salariu * 5) THEN
             RETURN p_salariu * 1.10;
-        ELSIF p_vanzari_angajat > (p_salariu * 3) THEN
+        ELSIF p_vanzari_angajat >= (p_salariu * 3) THEN
             RETURN p_salariu * 1.05;
         ELSE
             RETURN p_salariu;
@@ -51,7 +53,6 @@ CREATE OR REPLACE PACKAGE BODY performanta_angajati IS
     
     PROCEDURE angajati_eligibili(p_id_magazin MAGAZIN.id_magazin%TYPE, p_prag_vanzari NUMBER) IS
         v_count_magazin NUMBER;
-        v_salariu_nou NUMBER;
         
         t_raport_angajati raport_angajati_type;
     BEGIN
@@ -96,7 +97,8 @@ CREATE OR REPLACE PACKAGE BODY performanta_angajati IS
             DBMS_OUTPUT.PUT_LINE('Niciun angajat eligibil');
         END IF;
     EXCEPTION
-        WHEN MAGAZIN_INEXISTENT THEN DBMS_OUTPUT.PUT_LINE('Magazinul nu exista');
+        WHEN MAGAZIN_INEXISTENT THEN
+            RAISE_APPLICATION_ERROR(-20000, 'Magazinul nu exista');
     END angajati_eligibili;
     
     PROCEDURE majorare_salarii(p_id_magazin MAGAZIN.id_magazin%TYPE, p_prag_vanzari NUMBER) IS
@@ -137,7 +139,25 @@ CREATE OR REPLACE PACKAGE BODY performanta_angajati IS
 
     EXCEPTION
         WHEN MAGAZIN_INEXISTENT THEN
-            DBMS_OUTPUT.PUT_LINE('Magazinul nu exista');
+            RAISE_APPLICATION_ERROR(-20000, 'Magazinul nu exista');
     END majorare_salarii;
 END performanta_angajati;
+/
+
+--Sa se afiseze angajatii eligibili din magazinul 3
+BEGIN
+    performanta_angajati.angajati_eligibili(3, 1000);
+END;
+/
+    
+--Sa se aplice modificarile pentru angajatii eligibili din magazinul cu id-ul 3
+BEGIN
+    performanta_angajati.majorare_salarii(3, 1000);
+END;
+/
+
+--Sa se aplice modificarile pentru angajatii eligibili din magazinul cu id-ul 100
+BEGIN
+    performanta_angajati.majorare_salarii(100, 1000);
+END;
 /
